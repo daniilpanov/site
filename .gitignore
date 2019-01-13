@@ -19,3 +19,11 @@
 /fuel/app/logs/*/*/*
 /fuel/app/cache/*/*
 /fuel/app/config/crypt.php
+
+# IDE-generated files
+.idea
+
+# files creating after installing
+#.htaccess
+#errors/*
+#/*app/classes/Settings.php
