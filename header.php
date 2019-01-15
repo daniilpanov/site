@@ -31,7 +31,7 @@ $encoding = \app\classes\Settings::getSetting("encoding");
     <!-- My styles & JS -->
     <link rel="stylesheet" href="styles/Styles.css">
     <link rel="stylesheet" href="styles/MediaStyles.css">
-    <script src="js/functions.js" type="text/javascript"></script>
+    <script src="js/script.js" type="text/javascript"></script>
     <script src="js/classes.js" type="text/javascript"></script>
 
     <!-- BOOTSTRAP 4.0.0 -->
