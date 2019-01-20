@@ -1,7 +1,7 @@
 <?php
 namespace app\classes;
 
-class Router implements Controller
+class Router
 {
     // Используем Singleton
     use Singleton;
@@ -90,7 +90,7 @@ class Router implements Controller
 
     /**
      *
-     * @return mixed
+     * @return string
      */
     public function getTitle()
     {
@@ -99,16 +99,16 @@ class Router implements Controller
 
     /**
      *
-     * @return mixed
+     * @return array
      */
     public function getKeywords()
     {
-        return $this->keywords;
+        return explode(", ", $this->keywords);
     }
 
     /**
      *
-     * @return mixed
+     * @return string
      */
     public function getDescription()
     {
@@ -117,11 +117,11 @@ class Router implements Controller
 
     /**
      *
-     * @return mixed
+     * @return int
      */
     public function getPageId()
     {
-        return $this->page_id;
+        return (int) $this->page_id;
     }
 
     /**
@@ -135,7 +135,7 @@ class Router implements Controller
             $path = "views/V{$this->including}.php";
             if (!file_exists($path))
             {
-                throw new Exception("<b>Error: </b>View not found!");
+                throw new \Exception("<b>Error: </b>view 'V{$this->including}.php' not found!");
             }
             else
             {
@@ -144,8 +144,7 @@ class Router implements Controller
         }
         catch (\Exception $e)
         {
-
+            echo $e->getMessage();
         }
     }
-
 }

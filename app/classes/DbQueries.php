@@ -38,7 +38,7 @@ class DbQueries
 
             $this->DBH = new \PDO($this->DSN,
                 $user['user'],
-                $user['pass'],
+                $user['password'],
                 $this->OPT);
 
             $this->DBH->query("SET NAMES ".Settings::getSetting("MySQLCharset"));
@@ -46,9 +46,37 @@ class DbQueries
         catch(\PDOException $e)
         {
             echo "Извините, но операция подключения к БД не может быть выполнена";
-            echo $error = date("j.m.Y \a\\t G:i:s") . "\n\r\t".
-                $e->getMessage() . "\n\r\n\r";
-            file_put_contents('errors/DB.err', $error,FILE_APPEND);
+
+            Functions::writeError(date("j.m.Y \a\\t G:i:s"), $e->getMessage(), "DB");
         }
+    }
+
+    /**
+     * @param string $query
+     * @param array $params
+     * @param bool $emulate
+     * @return \PDOStatement|null
+     * @throws \PDOException
+     */
+    protected function query(string $query, array $params, bool $emulate)
+    {
+        //
+        $STH = null;
+
+        // если вместе с запросом был передан массив с данными
+        if ($params !== NULL)
+        {
+            $STH = $this->DBH->prepare($query);
+
+            $this->DBH->setAttribute(\PDO::ATTR_EMULATE_PREPARES, $emulate);
+            $STH->execute($params);
+        }
+        else
+        {
+            $STH = $this->DBH->query($query);
+        }
+
+
+        return $STH;
     }
 }

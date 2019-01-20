@@ -2,7 +2,7 @@
 namespace app\classes;
 
 
-class Install implements Controller
+class Install
 {
     // Используем Singleton
     use Singleton;

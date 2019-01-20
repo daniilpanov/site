@@ -34,4 +34,51 @@ class Db extends DbQueries
         );
 
     }
+
+    public function query(string $sql, array $params = array(), bool $emulate = true)
+    {
+        echo $sql;
+        $result = null;
+
+        try
+        {
+            $result = parent::query($sql, $params, $emulate);
+        }
+        catch (\PDOException $exception)
+        {
+            echo $exception->getMessage();
+        }
+
+        return $result;
+    }
+
+    public function read($table, $cols = "*", $where = null, $count = false, $order_by = null, $how = "ASC", $limit = null)
+    {
+        $sql = ($count) ? "SELECT COUNT({$cols}) FROM {$table}" : "SELECT {$cols} FROM {$table}";
+        $sql .= ($where !== null) ? " WHERE ".$this->whereToStr($where) : "";
+        $sql .= ($order_by !== null) ? " ORDER BY {$order_by} {$how}" : "";
+        $sql .= ($limit !== null) ? " {$limit}" : "";
+
+        return $this->query($sql, $where);
+    }
+
+    private function whereToStr($array, $templates = true)
+    {
+        $res = "";
+
+        if ($templates)
+        {
+            foreach ($array as $index => $item)
+            {
+                $res .= "{$index} = :{$index} AND ";
+            }
+            $res = substr($res, 0, -5);
+        }
+        else
+        {
+
+        }
+
+        return $res;
+    }
 }

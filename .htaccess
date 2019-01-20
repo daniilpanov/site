@@ -10,7 +10,7 @@ php_flag magic_quotes_runtime Off
 php_value register_globals Off
 
 # Отключаем сообщения типа warning и notice
-php_value error_reporting 1
+#php_value error_reporting 1
 
 # Включаем поддержку коротких тегов
 php_flag short_open_tag on
