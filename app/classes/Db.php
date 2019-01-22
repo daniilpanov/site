@@ -14,9 +14,9 @@ class Db extends DbQueries
     private function __construct()
     {
         $this->DSN =
-            "mysql:host=".Settings::getSetting(
-                'DBHost').";dbname=".Settings::getSetting(
-                    'CurrentDB').";charset=".Settings::getSetting(
+            "mysql:host=".DbSettings::getSetting(
+                'DBHost').";dbname=".DbSettings::getSetting(
+                    'CurrentDB').";charset=".DbSettings::getSetting(
                         'MySQLCharset');
 
         $this->openConnection();
@@ -28,8 +28,8 @@ class Db extends DbQueries
 
         self::$instance = $new_instance;
         self::$all_instances[] = array(
-            "User_name" => Settings::getSetting("CurrentUser")['name'],
-            "Database" => Settings::getSetting("CurrentDB"),
+            "User_name" => DbSettings::getSetting("CurrentUser")['name'],
+            "Database" => DbSettings::getSetting("CurrentDB"),
             "instance" => $new_instance
         );
 
@@ -37,7 +37,7 @@ class Db extends DbQueries
 
     public function query(string $sql, array $params = array(), bool $emulate = true)
     {
-        echo $sql;
+        //echo $sql;
         $result = null;
 
         try

@@ -1,9 +1,23 @@
+<?php
+
+?>
+
 <nav class="navbar navbar-expand-md navbar-light bg-light">
-    <a class="navbar-brand" href=""><img src="img/favicon.png">UPONLY</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <!-- Ссылка на стартовую страницу -->
+    <a class="navbar-brand" href="index.php">
+        <?=\app\classes\Factory::getInst("CSettings")->getSettings("site_name", "value", "list")["ru"]?>
+    </a>
+    <!-- Кнопка, показываемая только на маленьких экранах (для разворачивания меню) -->
+    <button class="navbar-toggler" type="button"
+            data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation"
+    >
+        <!-- Иконка -->
         <span class="navbar-toggler-icon"></span>
     </button>
 
+    <!-- Основное тело navbar'а -->
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">

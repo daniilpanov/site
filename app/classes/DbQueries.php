@@ -34,14 +34,14 @@ class DbQueries
     {
         try
         {
-            $user = Settings::getSetting("CurrentUser");
+            $user = DbSettings::getSetting("CurrentUser");
 
             $this->DBH = new \PDO($this->DSN,
                 $user['user'],
                 $user['password'],
                 $this->OPT);
 
-            $this->DBH->query("SET NAMES ".Settings::getSetting("MySQLCharset"));
+            $this->DBH->query("SET NAMES ".DbSettings::getSetting("MySQLCharset"));
         }
         catch(\PDOException $e)
         {

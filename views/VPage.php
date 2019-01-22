@@ -2,12 +2,15 @@
 /** @var $page_get \app\classes\CPage */
 $page_get = \app\classes\Factory::getInst("CPage");
 
-$page = $page_get->getPage($_GET['page']);
+var_dump($page = $page_get->getPage($_GET['page']));
 ?>
 
 <header>
     <?php
-    //require_once "views/VTopMenu.php";
+    if ($page['menus_vis'] == "top" || $page['menus_vis'] == "all")
+    {
+        require_once "views/VTopMenu.php";
+    }
     ?>
 </header>
 

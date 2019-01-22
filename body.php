@@ -1,4 +1,5 @@
 <body class="container-fluid">
+<button id="back" onclick="window.history.back()">Назад</button>
 <?php
 try
 {

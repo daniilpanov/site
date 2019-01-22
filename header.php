@@ -6,7 +6,7 @@
 $router = \app\classes\Router::getInstance();
 
 // Кодировка всего документа
-$encoding = \app\classes\Settings::getSetting("encoding");
+$encoding = "UTF-8";
 ?>
 
 <!DOCTYPE html>

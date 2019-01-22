@@ -2,7 +2,7 @@
 namespace app\classes;
 
 
-class Settings
+class DbSettings
 {
     // DB-settings:
     private static $CurrentDB = "new_my_project", // name of DB
@@ -21,14 +21,12 @@ class Settings
     private $DB, // name of DB
             $user, // info of user (login & password)
             $DB_host, // host, where DB is now
-            $MySQL_charset, // encoding for MySQL
-            $lng, // document language
-            $charset; // document encoding
+            $MySQL_charset; // encoding for MySQL
 
     //
     public function __construct(
         string $DB, string $user_name, string $DB_host, string $MySQL_charset,
-        string $user_pass = "", string $encoding = "UTF-8",  string $lng = "ru"
+        string $user_pass = "", string $encoding = "UTF-8"
     )
     {
         //
@@ -36,8 +34,6 @@ class Settings
         $this->DB = $DB;
         $this->user = array('user' => $user_name, 'pass' => $user_pass);
         $this->MySQL_charset = $MySQL_charset;
-        $this->lng = $lng;
-        $this->charset = $encoding;
         //
         self::$history[] = $this;
         //
